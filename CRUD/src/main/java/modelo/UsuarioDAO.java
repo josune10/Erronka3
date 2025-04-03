@@ -12,7 +12,7 @@ public class UsuarioDAO {
 	private Connection conn;
 	private final String url ="jdbc:mysql://localhost:3306/SecureDB";
 	private final String user ="root";
-	private final String password ="12345678";
+	private final String password ="Kazuki1414";
 	private final String driver="com.mysql.cj.jdbc.Driver";
 	/* *
 	 * SQL Sentences
