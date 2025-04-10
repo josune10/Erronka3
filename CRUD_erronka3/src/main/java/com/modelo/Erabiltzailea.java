@@ -17,6 +17,14 @@ public class Erabiltzailea {
 		this.fk_id_rola = fk_id_rola;
 	}
 
+	public Erabiltzailea(String email, String pasahitza) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Erabiltzailea(int id, String email, String pasahitza) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getId() {
 		return id;
 	}
