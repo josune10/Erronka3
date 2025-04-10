@@ -14,30 +14,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class UserServlet
- * 
- * @author = Iker Coranti Gabilondo (iCrouk)
- */
+
 @WebServlet("/")
 //@WebServlet("/UserServlet")
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	/* 1- DAO class bat behar dugu.*/
+	
 	private UsuarioDAO miUsuarioDAO;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    
     public UserServlet() {
         super();
         this.miUsuarioDAO = new UsuarioDAO();
         // TODO Auto-generated constructor stub
     }
-    
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
@@ -45,9 +35,6 @@ public class UserServlet extends HttpServlet {
 		doGet(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -75,9 +62,7 @@ public class UserServlet extends HttpServlet {
 		}
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
-/*
- *  Listara todos las tuplas de una tabla.
- */
+	
 	private void listarTodoLosUsuarios(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
 		ArrayList<Usuario> listarUsuarios = miUsuarioDAO.listarTodos();
@@ -85,9 +70,7 @@ public class UserServlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("listarUsuarios.jsp");
 		dispatcher.forward(request, response);
 	}
-/*
- * 
- */
+
 	protected void mostrarNuevoFromulario(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -101,11 +84,12 @@ public class UserServlet extends HttpServlet {
 		String email=request.getParameter("email");
 		Usuario miUsuario = new Usuario(name,email);
 		miUsuarioDAO.agregar(miUsuario);
+		request.setAttribute("miUsuario", miUsuario);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("usuarioFormularioEditar.jsp");
+		dispatcher.forward(request, response);
 		response.sendRedirect("listar");
 	}
-	/*
-	 * Actualiza los datos de un objeto tipo Usuario y los updatea en la base de datos.
-	 */
+	
 	private void actualizarUsuario(HttpServletRequest request, HttpServletResponse response) 
 			throws SQLException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -117,9 +101,7 @@ public class UserServlet extends HttpServlet {
 		miUsuarioDAO.actualizar(Usubook);
 		response.sendRedirect("listar");
 	}
-	/*
-	 * Insterta un nuevo usuario en la BD y despues vuelve a listar ta tabla.
-	 */
+	
 	private void insertarUsuario(HttpServletRequest request, HttpServletResponse response) 
 			throws SQLException, IOException {
 		try{
@@ -133,9 +115,7 @@ public class UserServlet extends HttpServlet {
 			e.getLocalizedMessage();
 		}
 	}
-	/*
-	 * Elimina una tupla usando el ID y vuelve a mostrat todas las tuplas de la tabla.
-	 */
+	
 	protected void eliminarUsuario(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException, SQLException {
 		// TODO Auto-generated method stub
