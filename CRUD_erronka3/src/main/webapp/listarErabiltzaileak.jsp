@@ -40,7 +40,7 @@
 			<table class="table table-bordered">
 				<thead>
 					<tr>
-						<th class="text-center">Identifikatzailea (id)</th>
+						<th class="text-center">Identifikatzailea</th>
 						<th class="text-center">Email</th>
 						<th class="text-center">Pasahitza</th>
 						<th class="text-center">Rola</th>
@@ -50,15 +50,15 @@
 					<c:forEach var="usuario" items="${listarTodosLosErabiltzaileak}">
 
 						<tr>
-							<td class="text-center"><c:out value="${erabiltzailea.id}" /></td>
+							<td class="text-center"><c:out value="${erabiltzailea.id_erabiltzaile}" /></td>
 							<td class="text-center"><c:out value="${erabiltzailea.email}" /></td>
 							<td class="text-center"><c:out value="${erabiltzailea.pasahitza}" /></td>
 							<td class="text-center"><c:out value="${erabiltzailea.fk_id_rola}" /></td>
 						
 							<td class="text-center">
-								<a href="editar?id=<c:out value='${erabiltzailea.id}' />">Editar</a>
+								<a href="editar?id=<c:out value='${erabiltzailea.id_erabiltzaile}' />">Editar</a>
 									&nbsp;&nbsp;&nbsp;&nbsp;
-								<a href="eliminar?id=<c:out value='${erabiltzailea.id}' />" onclick="return confirm('¿Seguro que desea elimiralo?');">Eliminar</a>
+								<a href="eliminar?id=<c:out value='${erabiltzailea.id_erabiltzaile}' />" onclick="return confirm('¿Seguro que desea elimiralo?');">Eliminar</a>
 							</td>
 						</tr>
 					</c:forEach>

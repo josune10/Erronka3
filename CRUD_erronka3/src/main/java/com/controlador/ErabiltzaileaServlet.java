@@ -105,16 +105,16 @@ public class ErabiltzaileaServlet extends HttpServlet {
 	protected void ezabatuErabiltzailea(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException, SQLException {
 		// TODO Auto-generated method stub
-		int id= Integer.parseInt(request.getParameter("id"));
-		miErabiltzaileaDAO.eliminar(id);
+		int id_erabiltzaile= Integer.parseInt(request.getParameter("id_erabiltzaile"));
+		miErabiltzaileaDAO.eliminar(id_erabiltzaile);
 		response.sendRedirect("listar");
 	}
 	
 	protected void mostrarFormularioParaEditar(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException, SQLException {
 		// TODO Auto-generated method stub
-		int id = Integer.parseInt(request.getParameter("id"));
-		Erabiltzailea erabiltzaileaExistente = miErabiltzaileaDAO.listarPorId(id);
+		int id_erabiltzaile = Integer.parseInt(request.getParameter("id_erabiltzaile"));
+		Erabiltzailea erabiltzaileaExistente = miErabiltzaileaDAO.listarPorId(id_erabiltzaile);
 		RequestDispatcher dispacher = request.getRequestDispatcher("usuarioFormularioNuevo.jsp");
 		request.setAttribute("erabiltzailea", erabiltzaileaExistente);
 		dispacher.forward(request, response);
@@ -123,10 +123,10 @@ public class ErabiltzaileaServlet extends HttpServlet {
 	protected void editarErabiltzaileaExistente(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException, SQLException {
 		// TODO Auto-generated method stub
-		int id = Integer.parseInt(request.getParameter("id"));
+		int id_erabiltzaile = Integer.parseInt(request.getParameter("id_erabiltzaile"));
 		String email= request.getParameter("email");
 		String pasahitza=request.getParameter("pasahitza");
-		Erabiltzailea miErabiltzailea = new Erabiltzailea(id, email, pasahitza);
+		Erabiltzailea miErabiltzailea = new Erabiltzailea(id_erabiltzaile, email, pasahitza);
 		miErabiltzaileaDAO.actualizar(miErabiltzailea);
 		System.out.println("Editado");
 		response.sendRedirect("listar");

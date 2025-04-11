@@ -1,7 +1,7 @@
 package com.modelo;
 
 public class Erabiltzailea {
-	private int id;
+	private int id_erabiltzaile;
 	private String email;
 	private String pasahitza;
 	private int fk_id_rola;
@@ -9,9 +9,9 @@ public class Erabiltzailea {
 	
 	public Erabiltzailea() {}
 	
-	public Erabiltzailea(int id, String email, String pasahitza, int fk_id_rola) {
+	public Erabiltzailea(int id_erabiltzaile, String email, String pasahitza, int fk_id_rola) {
 		super();
-		this.id = id;
+		this.id_erabiltzaile = id_erabiltzaile;
 		this.email = email;
 		this.pasahitza = pasahitza;
 		this.fk_id_rola = fk_id_rola;
@@ -21,16 +21,16 @@ public class Erabiltzailea {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Erabiltzailea(int id, String email, String pasahitza) {
+	public Erabiltzailea(int id_erabiltzaile, String email, String pasahitza) {
 		// TODO Auto-generated constructor stub
 	}
 
-	public int getId() {
-		return id;
+	public int getId_erabiltzaile() {
+		return id_erabiltzaile;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setId_erabiltzaile(int id_erabiltzaile) {
+		this.id_erabiltzaile = id_erabiltzaile;
 	}
 
 	public String getEmail() {

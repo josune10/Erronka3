@@ -12,11 +12,11 @@ public class ErabiltzaileaDAO {
 	private final String password ="Kazuki1414";
 	private final String driver="com.mysql.cj.jdbc.Driver";
 	
-	private final String SELECT_USER="SELECT id, email, pasahitza, fk_id_rola FROM erronka3.Erabiltzaileak";
-	private final String SELECT_USER_BY_ID="SELECT id, email, pasahitza, fk_id_rola FROM erronka3.Erabiltzaileak WHERE id=?";
+	private final String SELECT_USER="SELECT id_erabiltzaile, email, pasahitza, fk_id_rola FROM erronka3.Erabiltzaileak";
+	private final String SELECT_USER_BY_ID="SELECT id_erabiltzaile, email, pasahitza, fk_id_rola FROM erronka3.Erabiltzaileak WHERE id_erabiltzaile=?";
 	private final String CREATE_USER="INSERT INTO erronka3.Erabiltzaileak (email, pasahitza, fk_id_rola) VALUES (?, ?, ?)";
-	private final String DELETE_USER="DELETE FROM erronka3.Erabiltzaileak WHERE id=?";
-	private final String UPDATE_USER="UPDATE erronka3.Erabiltzaileak SET email=?, pasahitza=?, fk_id_rola=? WHERE id=?";
+	private final String DELETE_USER="DELETE FROM erronka3.Erabiltzaileak WHERE id_erabiltzaile=?";
+	private final String UPDATE_USER="UPDATE erronka3.Erabiltzaileak SET email=?, pasahitza=?, fk_id_rola=? WHERE id_erabiltzaile=?";
 	private final String VALIDATE_USER="SELECT count(*) FROM erronka3.Erabiltzaileak WHERE email=? AND pasahitza=?";
 	
 public ErabiltzaileaDAO() {}
@@ -52,7 +52,7 @@ public ArrayList<Erabiltzailea> listarTodos() {
     	ResultSet rs = ps.executeQuery();
         while (rs.next()) {
         	Erabiltzailea e = new Erabiltzailea();
-        	e.setId(rs.getInt("id"));
+        	e.setId_erabiltzaile(rs.getInt("id_erabiltzaile"));
         	e.setEmail(rs.getString("email"));
         	e.setPasahitza(rs.getString("pasahitza"));
         	e.setFk_id_rola(rs.getInt("fk_id_rola"));
@@ -73,7 +73,7 @@ public Erabiltzailea listarPorId (int id) throws SQLException{
 		ResultSet rst = pst.executeQuery();
 		
 		while(rst.next()) {
-			int erabid= rst.getInt("id");
+			int erabid= rst.getInt("id_erabiltzaile");
 			String erabEmail = rst.getString("email");
 			String erabPasahitza = rst.getString("pasahitza");
 			int erabFk_id_rola = rst.getInt("fk_id_rola");
@@ -108,7 +108,7 @@ public void actualizar(Erabiltzailea erabiltzailea) throws SQLException{
     	ps.setString(1, erabiltzailea.getEmail());
         ps.setString(2, erabiltzailea.getPasahitza());
         ps.setInt(3, erabiltzailea.getFk_id_rola());
-        //ps.setInt(4, erabiltzailea.getId());//
+        //ps.setInt(4, erabiltzailea.getId_erabiltzaile());//
         ps.executeUpdate();
         System.out.println("Actualizado");
     } catch (Exception e) {
@@ -116,9 +116,9 @@ public void actualizar(Erabiltzailea erabiltzailea) throws SQLException{
     }
 }//FINactualizar
 
-public void eliminar(int id) throws SQLException{
+public void eliminar(int id_erabiltzaile) throws SQLException{
     try (PreparedStatement ps = conn.prepareStatement(DELETE_USER)) {
-        ps.setInt(1, id);
+        ps.setInt(1, id_erabiltzaile);
         ps.executeUpdate();
     } catch (Exception e) {
         e.printStackTrace();
@@ -130,8 +130,8 @@ public void eliminar(int id) throws SQLException{
 	try{
 		conn = this.conectarBD();
 		PreparedStatement pst = conn.prepareStatement(VALIDATE_USER);
-		//System.out.println(VALIDATE_USER+" - "+erabiltzailea+" - "+pasahitza);
-		pst.setString(1, erabiltzailea);
+		//System.out.println(VALIDATE_USER+" - "+email+" - "+pasahitza);
+		pst.setString(1, email);
 		pst.setString(2, pasahitza);
 		ResultSet rst=pst.executeQuery();
 		
