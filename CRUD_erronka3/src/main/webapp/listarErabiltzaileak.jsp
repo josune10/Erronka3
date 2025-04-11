@@ -47,7 +47,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="usuario" items="${listarTodosLosErabiltzaileak}">
+					<c:forEach var="erabiltzailea" items="${listarTodosLosErabiltzaileak}">
 
 						<tr>
 							<td class="text-center"><c:out value="${erabiltzailea.id_erabiltzaile}" /></td>
