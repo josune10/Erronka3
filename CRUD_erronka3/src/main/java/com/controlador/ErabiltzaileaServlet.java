@@ -89,7 +89,7 @@ public class ErabiltzaileaServlet extends HttpServlet {
 	protected void mostrarNuevoFormulario(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = request.getRequestDispatcher("usuarioFormularioNuevo.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("erabiltzaileaFormularioNuevo.jsp");
 		dispatcher.forward(request, response);
 	}
 	
@@ -135,7 +135,7 @@ public class ErabiltzaileaServlet extends HttpServlet {
 		private void listarTodosLosErabiltzaileak(HttpServletRequest request, HttpServletResponse response)
 				throws SQLException, IOException, ServletException {
 			ArrayList<Erabiltzailea> listarErabiltzaileak = miErabiltzaileaDAO.listarTodos();
-			request.setAttribute("listarTodoLosErabiltzaileak", listarErabiltzaileak);
+			request.setAttribute("listarTodosLosErabiltzaileak", listarErabiltzaileak);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("listarErabiltzaileak.jsp");
 			dispatcher.forward(request, response);
 		}

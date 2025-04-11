@@ -51,12 +51,12 @@ public ArrayList<Erabiltzailea> listarTodos() {
     	PreparedStatement ps = conn.prepareStatement(SELECT_USER);
     	ResultSet rs = ps.executeQuery();
         while (rs.next()) {
-        	Erabiltzailea u = new Erabiltzailea();
-        	u.setId(rs.getInt("id"));
-        	u.setEmail(rs.getString("email"));
-        	u.setPasahitza(rs.getString("pasahitza"));
-        	u.setFk_id_rola(rs.getInt("fk_id_rola"));
-            mylista.add(u);
+        	Erabiltzailea e = new Erabiltzailea();
+        	e.setId(rs.getInt("id"));
+        	e.setEmail(rs.getString("email"));
+        	e.setPasahitza(rs.getString("pasahitza"));
+        	e.setFk_id_rola(rs.getInt("fk_id_rola"));
+            mylista.add(e);
         }
     } catch (Exception e) {
         e.printStackTrace();
